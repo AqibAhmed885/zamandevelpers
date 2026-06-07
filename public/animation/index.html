@@ -1,0 +1,556 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Scroll Cinematic Animation Demo</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      :root {
+        color-scheme: dark;
+        --bg: #10100e;
+        --ink: #f6f0e6;
+        --muted: #b8b0a4;
+        --accent: #ffa574;
+        --panel: #1d1c18;
+      }
+
+      body {
+        margin: 0;
+        font-family:
+          Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+          "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+        letter-spacing: 0;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .nav {
+        position: fixed;
+        z-index: 20;
+        top: 20px;
+        left: 50%;
+        width: min(1120px, calc(100% - 32px));
+        transform: translateX(-50%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 16px;
+        border: 1px solid rgb(255 255 255 / 0.16);
+        background: rgb(16 16 14 / 0.62);
+        backdrop-filter: blur(18px);
+      }
+
+      .brand {
+        font-weight: 800;
+        letter-spacing: 0.08em;
+      }
+
+      .nav a {
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .hero {
+        position: relative;
+        min-height: 280vh;
+      }
+
+      .hero-stage {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        overflow: hidden;
+        background: #0b0b0a;
+      }
+
+      .hero-video {
+        position: absolute;
+        inset: 0;
+        opacity: 0.75;
+        transform: scale(1.08);
+      }
+
+      .hero-video::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(90deg, rgb(0 0 0 / 0.72), transparent 58%),
+          linear-gradient(0deg, rgb(0 0 0 / 0.5), transparent 40%);
+      }
+
+      .hero-video canvas,
+      .hero-video img {
+        width: 100%;
+        height: 100%;
+      }
+
+      .hero-video img {
+        filter: saturate(0.9) contrast(1.08);
+      }
+
+      .hero-video canvas {
+        display: block;
+        filter: saturate(0.94) contrast(1.08);
+      }
+
+      .hero-copy {
+        position: relative;
+        z-index: 2;
+        display: grid;
+        align-content: end;
+        min-height: 100vh;
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        padding: 120px 0 70px;
+      }
+
+      .eyebrow {
+        color: var(--accent);
+        font-size: 13px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        max-width: 980px;
+        margin: 14px 0 24px;
+        font-size: clamp(54px, 10vw, 142px);
+        line-height: 0.9;
+        font-weight: 800;
+      }
+
+      .line {
+        display: block;
+        overflow: hidden;
+      }
+
+      .line span {
+        display: block;
+        transform: translateY(110%);
+      }
+
+      .is-ready .line span {
+        transition: transform 900ms cubic-bezier(0.22, 1, 0.36, 1);
+        transform: translateY(0);
+      }
+
+      .hero-copy p {
+        max-width: 560px;
+        margin: 0;
+        color: var(--muted);
+        font-size: clamp(17px, 2vw, 22px);
+        line-height: 1.5;
+      }
+
+      .gallery {
+        position: relative;
+        min-height: 170vh;
+        padding: 120px 0;
+        background: #e8ded1;
+        color: #111;
+        overflow: hidden;
+      }
+
+      .gallery-inner {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+      }
+
+      .gallery h2 {
+        position: sticky;
+        top: 120px;
+        z-index: 3;
+        max-width: 640px;
+        margin: 0;
+        font-size: clamp(38px, 7vw, 94px);
+        line-height: 0.95;
+      }
+
+      .tile {
+        position: absolute;
+        overflow: hidden;
+        border-radius: 8px;
+        box-shadow: 0 26px 90px rgb(0 0 0 / 0.18);
+        will-change: transform;
+      }
+
+      .tile-a {
+        top: 16%;
+        right: 7%;
+        width: min(36vw, 430px);
+        aspect-ratio: 4 / 5;
+      }
+
+      .tile-b {
+        top: 46%;
+        left: 5%;
+        width: min(30vw, 350px);
+        aspect-ratio: 1;
+      }
+
+      .tile-c {
+        right: 18%;
+        bottom: 8%;
+        width: min(32vw, 390px);
+        aspect-ratio: 5 / 4;
+      }
+
+      .services {
+        background: var(--bg);
+        padding: 110px 0;
+      }
+
+      .services-inner {
+        width: min(1120px, calc(100% - 32px));
+        margin: 0 auto;
+        display: grid;
+        gap: 18px;
+      }
+
+      .service {
+        display: grid;
+        grid-template-columns: 0.7fr 1fr 140px;
+        gap: 22px;
+        align-items: center;
+        min-height: 150px;
+        padding: 22px 0;
+        border-top: 1px solid rgb(255 255 255 / 0.16);
+        cursor: pointer;
+      }
+
+      .service:last-child {
+        border-bottom: 1px solid rgb(255 255 255 / 0.16);
+      }
+
+      .service h3 {
+        margin: 0;
+        font-size: clamp(28px, 4vw, 58px);
+      }
+
+      .service p {
+        margin: 0;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      .thumb {
+        height: 108px;
+        overflow: hidden;
+        border-radius: 8px;
+        transform: scale(0.92);
+        transition: transform 400ms ease;
+      }
+
+      .service:hover .thumb {
+        transform: scale(1);
+      }
+
+      [data-fade] {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity 700ms ease,
+          transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
+      }
+
+      [data-fade].is-visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      @media (max-width: 760px) {
+        .nav {
+          top: 12px;
+        }
+
+        .gallery {
+          min-height: 130vh;
+        }
+
+        .tile-a,
+        .tile-b,
+        .tile-c {
+          width: 58vw;
+        }
+
+        .service {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <div class="brand">MODUS-LIKE</div>
+      <a href="#services">Services</a>
+    </nav>
+
+    <section class="hero" data-hero>
+      <div class="hero-stage">
+        <div class="hero-video" data-hero-image>
+          <canvas
+            data-sequence-canvas
+            data-frame-path="frames/frame_"
+            data-frame-count="169"
+            data-frame-digits="3"
+            aria-label="Cinematic building animation from extracted video frames"
+          ></canvas>
+        </div>
+        <div class="hero-copy">
+          <div class="eyebrow">Scroll cinematic</div>
+          <h1>
+            <span class="line"><span data-reveal>Anders denken,</span></span>
+            <span class="line"><span data-reveal>Slimmer bouwen.</span></span>
+          </h1>
+          <p data-fade>
+            A Next/React friendly recipe: sticky scenes, scrubbed transforms,
+            reveal masks, parallax media, and a calm smooth-scroll layer.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery">
+      <div class="gallery-inner">
+        <h2 data-fade>Images move through the page, while the text stays pinned.</h2>
+      </div>
+      <div class="tile tile-a" data-speed="-120">
+        <img
+          src="frames/frame_018.jpg"
+          alt="Building sequence frame"
+        />
+      </div>
+      <div class="tile tile-b" data-speed="150">
+        <img
+          src="frames/frame_044.jpg"
+          alt="Building sequence frame"
+        />
+      </div>
+      <div class="tile tile-c" data-speed="-90">
+        <img
+          src="frames/frame_072.jpg"
+          alt="Building sequence frame"
+        />
+      </div>
+    </section>
+
+    <section id="services" class="services">
+      <div class="services-inner">
+        <article class="service" data-fade>
+          <h3>Sanitair</h3>
+          <p>Rows reveal as they enter, thumbnails scale on hover, and the layout stays restrained.</p>
+          <div class="thumb">
+            <img src="frames/frame_012.jpg" alt="Building sequence detail frame" />
+          </div>
+        </article>
+        <article class="service" data-fade>
+          <h3>Keukens</h3>
+          <p>Use the same component for every content block and drive motion through shared hooks.</p>
+          <div class="thumb">
+            <img src="frames/frame_040.jpg" alt="Building sequence detail frame" />
+          </div>
+        </article>
+        <article class="service" data-fade>
+          <h3>Vloeren</h3>
+          <p>Keep animation values subtle; the premium feeling comes from timing, spacing, and images.</p>
+          <div class="thumb">
+            <img src="frames/frame_068.jpg" alt="Building sequence detail frame" />
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <script>
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      if (!prefersReducedMotion) {
+        window.addEventListener("load", () => {
+          document.body.classList.add("is-ready");
+        });
+
+        const hero = document.querySelector("[data-hero]");
+        const heroImage = document.querySelector("[data-hero-image]");
+        const canvas = document.querySelector("[data-sequence-canvas]");
+        const context = canvas.getContext("2d");
+        const framePath = canvas.dataset.framePath;
+        const frameCount = Number(canvas.dataset.frameCount);
+        const frameDigits = Number(canvas.dataset.frameDigits);
+        const frames = [];
+        let activeFrame = 0;
+        let targetFrame = 0;
+        let lastScrollY = -1;
+        const gallery = document.querySelector(".gallery");
+        const tiles = [...document.querySelectorAll(".tile")];
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) entry.target.classList.add("is-visible");
+            });
+          },
+          { threshold: 0.18 }
+        );
+
+        document.querySelectorAll("[data-fade], .service").forEach((item) => {
+          observer.observe(item);
+        });
+
+        function clamp(value, min, max) {
+          return Math.min(Math.max(value, min), max);
+        }
+
+        function progressFor(element) {
+          const rect = element.getBoundingClientRect();
+          const distance = rect.height - window.innerHeight;
+          return clamp(-rect.top / Math.max(distance, 1), 0, 1);
+        }
+
+        function frameUrl(index) {
+          return `${framePath}${String(index + 1).padStart(frameDigits, "0")}.jpg`;
+        }
+
+        function resizeCanvas() {
+          const ratio = window.devicePixelRatio || 1;
+          const { width, height } = canvas.getBoundingClientRect();
+          canvas.width = Math.round(width * ratio);
+          canvas.height = Math.round(height * ratio);
+          drawFrame(targetFrame);
+        }
+
+        function isLoaded(index) {
+          const image = frames[index];
+          return image && image.complete && image.naturalWidth > 0;
+        }
+
+        function nearestLoadedFrame(index) {
+          if (isLoaded(index)) return index;
+          for (let radius = 1; radius < frameCount; radius += 1) {
+            if (isLoaded(index - radius)) return index - radius;
+            if (isLoaded(index + radius)) return index + radius;
+          }
+          return null;
+        }
+
+        function drawFrame(index) {
+          targetFrame = index;
+          const renderIndex = nearestLoadedFrame(index);
+          if (renderIndex === null) return;
+          const image = frames[renderIndex];
+
+          activeFrame = renderIndex;
+          canvas.dataset.currentFrame = String(renderIndex + 1);
+          canvas.dataset.targetFrame = String(index + 1);
+          const canvasWidth = canvas.width;
+          const canvasHeight = canvas.height;
+          const coverScale = Math.max(
+            canvasWidth / image.naturalWidth,
+            canvasHeight / image.naturalHeight
+          );
+          const containScale = Math.min(
+            canvasWidth / image.naturalWidth,
+            canvasHeight / image.naturalHeight
+          );
+          const bgWidth = image.naturalWidth * coverScale;
+          const bgHeight = image.naturalHeight * coverScale;
+          const bgX = (canvasWidth - bgWidth) / 2;
+          const bgY = (canvasHeight - bgHeight) / 2;
+          const width = image.naturalWidth * containScale;
+          const height = image.naturalHeight * containScale;
+          const x = (canvasWidth - width) / 2;
+          const y = (canvasHeight - height) / 2;
+
+          context.clearRect(0, 0, canvasWidth, canvasHeight);
+          context.save();
+          context.filter = "blur(34px) brightness(0.62) saturate(1.08)";
+          context.drawImage(image, bgX, bgY, bgWidth, bgHeight);
+          context.restore();
+          context.fillStyle = "rgba(0, 0, 0, 0.18)";
+          context.fillRect(0, 0, canvasWidth, canvasHeight);
+          context.drawImage(image, x, y, width, height);
+        }
+
+        function preloadFrames() {
+          for (let index = 0; index < frameCount; index += 1) {
+            const image = new Image();
+            image.src = frameUrl(index);
+            image.onload = () => {
+              if (index === 0 || index === targetFrame) drawFrame(targetFrame);
+            };
+            frames[index] = image;
+          }
+        }
+
+        function updateScrollMotion() {
+          const heroProgress = progressFor(hero);
+          const heroScale = 1.08 - heroProgress * 0.08;
+          const nextFrame = Math.round(heroProgress * (frameCount - 1));
+
+          drawFrame(nextFrame);
+          heroImage.style.transform = `scale(${heroScale})`;
+          heroImage.style.opacity = `${0.75 - heroProgress * 0.25}`;
+
+          const galleryRect = gallery.getBoundingClientRect();
+          const galleryProgress = clamp(
+            (window.innerHeight - galleryRect.top) /
+              (window.innerHeight + galleryRect.height),
+            0,
+            1
+          );
+
+          tiles.forEach((tile) => {
+            const speed = Number(tile.dataset.speed);
+            const y = speed * (galleryProgress - 0.5);
+            tile.style.transform = `translate3d(0, ${y}px, 0)`;
+          });
+        }
+
+        preloadFrames();
+        resizeCanvas();
+        updateScrollMotion();
+        function animationLoop() {
+          if (window.scrollY !== lastScrollY) {
+            lastScrollY = window.scrollY;
+            updateScrollMotion();
+          }
+          requestAnimationFrame(animationLoop);
+        }
+
+        function updateIfScrolled() {
+          if (window.scrollY !== lastScrollY) {
+            lastScrollY = window.scrollY;
+            updateScrollMotion();
+          }
+        }
+
+        requestAnimationFrame(animationLoop);
+        window.addEventListener("scroll", updateIfScrolled, { passive: true });
+        document.addEventListener("scroll", updateIfScrolled, { passive: true });
+        window.setInterval(updateIfScrolled, 120);
+        window.addEventListener("resize", () => {
+          resizeCanvas();
+          updateScrollMotion();
+        });
+      } else {
+        document.body.classList.add("is-ready");
+        document.querySelectorAll("[data-fade]").forEach((item) => {
+          item.classList.add("is-visible");
+        });
+      }
+    </script>
+  </body>
+</html>
