@@ -37,10 +37,10 @@ export function FeaturedPropertySection() {
           {/* <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/82">
             Featured Property
           </p> */}
-          <h2 className="text-3xl font-semibold uppercase leading-tight tracking-[0.08em] text-white sm:text-4xl lg:text-[38px]">
+          <h2 className="text-3xl font-semibold uppercase leading-tight tracking-[0.08em] text-white sm:text-lg lg:text-xl">
             Isla Bay by Zaman Developers
           </h2>
-          <p className="mt-4 max-w-3xl text-base leading-8 text-white/86 sm:text-base">
+          <p className="mt-4 max-w-3xl text-base  text-white/86 sm:text-xs">
             Rising above the pristine waterfront of Dubai Island, Isla Bay is a
             rare dialogue between avant-garde form and human feeling,
             introducing an exclusive resort ecosystem at your doorstep.
@@ -52,7 +52,7 @@ export function FeaturedPropertySection() {
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-white/72">
                   {item.title}
                 </p>
-                <p className="mt-2 text-xs leading-6 text-white/82">
+                <p className="mt-2 text-xs  text-white/82">
                   {item.body}
                 </p>
               </article>
