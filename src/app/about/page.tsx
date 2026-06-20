@@ -1,5 +1,5 @@
 import { AboutHero } from "@/components/about/about-hero";
-import { CommitmentsSection } from "@/components/about/commitments-section";
+// import { CommitmentsSection } from "@/components/about/commitments-section";
 import { DestinationsSection } from "@/components/about/destinations-section";
 import { DesignSequenceSection } from "@/components/about/design-sequence-section";
 import { LeadershipQuoteSection } from "@/components/about/leadership-quote-section";
@@ -9,7 +9,7 @@ import { WhoWeAreSection } from "@/components/about/who-we-are-section";
 import { Footer, Header } from "@/components/site-shell";
 import {
   aboutHero,
-  commitmentItems,
+  // commitmentItems,
   destinationsSection,
   leadershipQuote,
   pillarCards,
@@ -36,7 +36,7 @@ export default function AboutPage() {
         <DestinationsSection {...destinationsSection} />
         <PillarsSection cards={pillarCards} />
         <PortfolioSection items={portfolioItems} />
-        <CommitmentsSection items={commitmentItems} />
+        {/* <CommitmentsSection items={commitmentItems} /> */}
       </main>
       <Footer />
     </>
