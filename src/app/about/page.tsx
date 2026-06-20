@@ -1,6 +1,7 @@
 import { AboutHero } from "@/components/about/about-hero";
 import { CommitmentsSection } from "@/components/about/commitments-section";
 import { DestinationsSection } from "@/components/about/destinations-section";
+import { DesignSequenceSection } from "@/components/about/design-sequence-section";
 import { LeadershipQuoteSection } from "@/components/about/leadership-quote-section";
 import { PillarsSection } from "@/components/about/pillars-section";
 import { PortfolioSection } from "@/components/about/portfolio-section";
@@ -30,6 +31,7 @@ export default function AboutPage() {
       <main>
         <AboutHero {...aboutHero} />
         <LeadershipQuoteSection {...leadershipQuote} />
+        <DesignSequenceSection />
         <WhoWeAreSection cards={whoWeAreCards} />
         <DestinationsSection {...destinationsSection} />
         <PillarsSection cards={pillarCards} />

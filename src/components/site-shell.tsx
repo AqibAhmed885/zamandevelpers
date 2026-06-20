@@ -4,19 +4,51 @@ import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
 import {
   ArrowRight,
-  BriefcaseBusiness,
-  Camera,
   ChevronDown,
-  CirclePlay,
   CornerDownRight,
   Mail,
   MapPin,
   Menu,
-  MessageCircle,
   Phone,
   X,
 } from "lucide-react";
 import { navigation } from "@/lib/site-content";
+
+type SocialIconName = "instagram" | "facebook" | "linkedin" | "youtube";
+
+function SocialIcon({ name }: { name: SocialIconName }) {
+  if (name === "instagram") {
+    return (
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" className="h-4 w-4">
+        <rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="12" cy="12" r="4.1" stroke="currentColor" strokeWidth="1.8" />
+        <circle cx="17.4" cy="6.7" r="1.1" fill="currentColor" />
+      </svg>
+    );
+  }
+
+  if (name === "facebook") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4">
+        <path d="M13.7 21v-8h2.75l.41-3.2H13.7V7.76c0-.93.26-1.56 1.59-1.56H17V3.34c-.3-.04-1.31-.13-2.5-.13-2.47 0-4.16 1.5-4.16 4.28V9.8H7.55V13h2.79v8h3.36Z" />
+      </svg>
+    );
+  }
+
+  if (name === "linkedin") {
+    return (
+      <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4">
+        <path d="M6.47 8.1H3.15V21h3.32V8.1ZM4.81 3a1.93 1.93 0 1 0 0 3.86A1.93 1.93 0 0 0 4.81 3ZM21 13.6c0-3.89-2.08-5.7-4.85-5.7a4.18 4.18 0 0 0-3.78 2.08V8.1H9.05V21h3.32v-6.39c0-1.68.32-3.31 2.4-3.31 2.05 0 2.08 1.92 2.08 3.42V21H21v-7.4Z" />
+      </svg>
+    );
+  }
+
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" className="h-4 w-4">
+      <path d="M21.58 7.19a2.5 2.5 0 0 0-1.76-1.77C18.27 5 12 5 12 5s-6.27 0-7.82.42a2.5 2.5 0 0 0-1.76 1.77A26 26 0 0 0 2 12a26 26 0 0 0 .42 4.81 2.5 2.5 0 0 0 1.76 1.77C5.73 19 12 19 12 19s6.27 0 7.82-.42a2.5 2.5 0 0 0 1.76-1.77A26 26 0 0 0 22 12a26 26 0 0 0-.42-4.81ZM10 15V9l5.2 3L10 15Z" />
+    </svg>
+  );
+}
 
 export function Header() {
   const [isPastHero, setIsPastHero] = useState(false);
@@ -229,22 +261,22 @@ export function Footer() {
     {
       label: "Instagram",
       href: "https://www.instagram.com/",
-      icon: Camera,
+      icon: "instagram" as const,
     },
     {
       label: "Facebook",
       href: "https://www.facebook.com/",
-      icon: MessageCircle,
+      icon: "facebook" as const,
     },
     {
       label: "LinkedIn",
       href: "https://www.linkedin.com/",
-      icon: BriefcaseBusiness,
+      icon: "linkedin" as const,
     },
     {
       label: "YouTube",
       href: "https://www.youtube.com/",
-      icon: CirclePlay,
+      icon: "youtube" as const,
     },
   ];
 
@@ -315,7 +347,7 @@ export function Footer() {
           <address className="mt-4 space-y-4 text-[15px] not-italic leading-6 text-[var(--color-cool-gray)]">
             <a href="tel:+971000000000" className="flex w-fit items-start gap-2.5 transition hover:text-[var(--color-soft-gold)]">
               <Phone aria-hidden="true" className="mt-0.5 h-4 w-4 shrink-0" />
-              <span>+971 00 000 0000</span>
+              <span>+97 15 588 885</span>
             </a>
             <a href="mailto:sales@zamandevelopers.com" className="flex w-fit items-start gap-2.5 transition hover:text-[var(--color-soft-gold)]">
               <Mail aria-hidden="true" className="mt-1 h-4 w-4 shrink-0" />
@@ -349,10 +381,9 @@ export function Footer() {
           </form>
           <div className="mt-5 flex items-center gap-4">
             {socialLinks.map((social) => {
-              const SocialIcon = social.icon;
               return (
-                <a key={social.label} href={social.href} target="_blank" rel="noreferrer" aria-label={social.label} className="text-[var(--color-cool-gray)] transition hover:-translate-y-0.5 hover:text-[var(--color-soft-gold)]">
-                  <SocialIcon aria-hidden="true" className="h-5 w-5" />
+                <a key={social.label} href={social.href} target="_blank" rel="noreferrer" aria-label={social.label} className="grid h-9 w-9 place-items-center rounded-full border border-[var(--color-cool-gray)]/35 text-[var(--color-cool-gray)] transition duration-300 hover:-translate-y-0.5 hover:border-[var(--color-soft-gold)] hover:bg-[var(--color-soft-gold)] hover:text-[var(--color-primary-navy)]">
+                  <SocialIcon name={social.icon} />
                 </a>
               );
             })}

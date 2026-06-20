@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Marcellus } from "next/font/google";
 import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
+import "lenis/dist/lenis.css";
 import "./globals.css";
 
 const brandFont = Marcellus({
