@@ -115,10 +115,10 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               <div className="space-y-12">
                 {post.sections.map((section) => (
                   <section key={section.heading}>
-                    <h2 className="border-l-[3px] border-[#9f264a] pl-5 text-3xl font-semibold uppercase leading-tight tracking-[0.04em] text-[#111816]">
+                    <h2 className="border-l-[3px] border-[var(--color-metallic-gold)] pl-5 text-3xl font-semibold uppercase leading-tight tracking-[0.04em] text-[var(--color-primary-navy)]">
                       {section.heading}
                     </h2>
-                    <div className="mt-6 space-y-5 text-lg leading-8 text-[#3f4a46]">
+                    <div className="mt-6 space-y-5 text-lg leading-8 text-[var(--color-charcoal)]">
                       {section.body.map((paragraph) => (
                         <p key={paragraph}>{paragraph}</p>
                       ))}
@@ -128,15 +128,15 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               </div>
 
               <aside className="lg:sticky lg:top-28 lg:self-start">
-                <div className="border border-[#dfd6c5] bg-[#faf7f0] p-6">
-                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#9f264a]">
+                <div className="border border-[var(--color-cool-gray)]/35 bg-[var(--color-off-white)] p-6">
+                  <p className="text-xs font-bold uppercase tracking-[0.2em] text-[var(--color-metallic-gold)]">
                     Article Focus
                   </p>
                   <div className="mt-5 flex flex-wrap gap-2">
                     {post.keywords.map((keyword) => (
                       <span
                         key={keyword}
-                        className="border border-[#d8cfbf] bg-white px-3 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-[#3f4a46]"
+                        className="border border-[var(--color-cool-gray)]/35 bg-[var(--color-white)] px-3 py-2 text-xs font-semibold uppercase tracking-[0.08em] text-[var(--color-charcoal)]"
                       >
                         {keyword}
                       </span>
@@ -148,15 +148,15 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           </section>
         </article>
 
-        <section className="border-t border-[#e7dece] px-5 py-16 lg:px-8">
+        <section className="border-t border-[var(--color-cool-gray)]/25 px-5 py-16 lg:px-8">
           <div className="mx-auto max-w-6xl">
             <div className="flex items-center justify-between gap-6">
-              <h2 className="border-l-[3px] border-[#9f264a] pl-5 text-3xl font-medium uppercase tracking-[0.08em] text-[#111816]">
+              <h2 className="border-l-[3px] border-[var(--color-metallic-gold)] pl-5 text-3xl font-medium uppercase tracking-[0.08em] text-[var(--color-primary-navy)]">
                 More Insights
               </h2>
               <Link
                 href="/blogs"
-                className="text-sm font-extrabold uppercase tracking-[0.08em] text-[#9f264a] transition hover:text-[#16211f]"
+                className="text-sm font-extrabold uppercase tracking-[0.08em] text-[var(--color-metallic-gold)] transition hover:text-[var(--color-primary-navy)]"
               >
                 All News
               </Link>
@@ -165,7 +165,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               {relatedPosts.map((item) => (
                 <article key={item.slug} className="group">
                   <Link href={`/blogs/${item.slug}`} className="block">
-                    <div className="relative aspect-[1.48] overflow-hidden bg-[#eee5d7]">
+                    <div className="relative aspect-[1.48] overflow-hidden bg-[var(--color-off-white)]">
                       <Image
                         src={item.image}
                         alt={item.title}
@@ -175,13 +175,13 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                       />
                     </div>
                   </Link>
-                  <p className="mt-5 text-sm font-semibold uppercase tracking-[0.04em] text-[#8c8c8c]">
+                  <p className="mt-5 text-sm font-semibold uppercase tracking-[0.04em] text-[var(--color-cool-gray)]">
                     {item.category} - {item.displayDate}
                   </p>
-                  <h3 className="mt-2 text-xl font-extrabold uppercase leading-tight text-[#111816]">
+                  <h3 className="mt-2 text-xl font-extrabold uppercase leading-tight text-[var(--color-primary-navy)]">
                     <Link
                       href={`/blogs/${item.slug}`}
-                      className="transition hover:text-[#9f264a]"
+                      className="transition hover:text-[var(--color-metallic-gold)]"
                     >
                       {item.title}
                     </Link>

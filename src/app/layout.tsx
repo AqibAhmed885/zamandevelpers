@@ -1,5 +1,20 @@
 import type { Metadata } from "next";
+import { Inter, Marcellus } from "next/font/google";
 import "./globals.css";
+
+const brandFont = Marcellus({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-brand",
+  display: "swap",
+});
+
+const bodyFont = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-body",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -16,7 +31,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" data-scroll-behavior="smooth" className="h-full antialiased">
+    <html
+      lang="en"
+      data-scroll-behavior="smooth"
+      className={`${brandFont.variable} ${bodyFont.variable} h-full antialiased`}
+    >
 
       <body className="min-h-full flex flex-col">
         {children}

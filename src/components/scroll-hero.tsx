@@ -173,8 +173,8 @@ export function ScrollHero() {
   }, []);
 
   return (
-    <section ref={heroRef} className="relative min-h-[280vh] bg-[#0b0b0a]">
-      <div className="sticky top-0 h-screen overflow-hidden bg-[#0b0b0a] text-white">
+    <section ref={heroRef} className="relative min-h-[280vh] bg-[var(--color-primary-navy)]">
+      <div className="sticky top-0 h-screen overflow-hidden bg-[var(--color-primary-navy)] text-[var(--color-white)]">
         <div
           ref={mediaRef}
           className="absolute inset-0 scale-[1.04] opacity-100 will-change-transform"
@@ -188,10 +188,10 @@ export function ScrollHero() {
         {/* <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.84),rgba(0,0,0,0.48)_38%,rgba(0,0,0,0.06)_72%),linear-gradient(0deg,rgba(0,0,0,0.58),rgba(0,0,0,0.02)_45%)]" /> */}
         <div className="relative z-10 mx-auto grid min-h-screen max-w-7xl content-end px-5 pb-16 pt-32 lg:px-8">
           <div ref={copyRef} className="max-w-4xl will-change-transform">
-            {/* <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[#d7b982]">
+            {/* <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[var(--color-metallic-gold)]">
               Isla Bay Website
             </p> */}
-            <h1 className="mt-6 text-5xl font-semibold leading-[0.98] sm:text-6xl lg:text-7xl">
+            <h1 className="font-heading mt-6 text-5xl font-semibold leading-[0.98] sm:text-6xl lg:text-7xl">
               {["We don't just ",
                 "build the future.",
                 " We define the era."].map(
@@ -210,19 +210,19 @@ export function ScrollHero() {
                 )
               )}
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 ">
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--color-off-white)]">
               Zaman Developers introduces <strong>Isla Bay</strong>—an architectural masterpiece gracing the shores of <strong>Dubai Islands</strong> . A rare sanctuary where ultra-luxury island living harmonizes with the bold energy of the city.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/projects/isla-bay"
-                className="rounded-full bg-[#d7b982] px-6 py-3 text-center text-sm font-semibold text-[#101816] transition hover:bg-[#f2d99f]"
+                className="rounded-full bg-[var(--color-metallic-gold)] px-6 py-3 text-center text-sm font-semibold text-[var(--color-primary-navy)] transition hover:bg-[var(--color-soft-gold)]"
               >
                 Discover Isla Bay
               </Link>
               <Link
                 href="/contact"
-                className="rounded-full border border-white/35 px-6 py-3 text-center text-sm font-semibold text-white transition hover:border-[#d7b982] hover:text-[#d7b982]"
+                className="rounded-full border border-[var(--color-white)]/35 px-6 py-3 text-center text-sm font-semibold text-[var(--color-white)] transition hover:border-[var(--color-soft-gold)] hover:text-[var(--color-soft-gold)]"
               >
                 Schedule a Private Briefing
               </Link>
