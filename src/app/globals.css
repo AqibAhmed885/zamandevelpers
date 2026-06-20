@@ -62,7 +62,15 @@ h6 {
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+[data-lenis-prevent] {
+  overscroll-behavior: contain;
 }
 
 ::selection {

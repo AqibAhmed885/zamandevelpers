@@ -3,7 +3,6 @@ import Link from "next/link";
 import { PageHero } from "@/components/page-hero";
 import { Footer, Header } from "@/components/site-shell";
 import { blogPosts } from "@/lib/site-content";
-import { MoveRightIcon } from "lucide-react";
 
 export default function BlogsPage() {
   return (
@@ -43,7 +42,7 @@ export default function BlogsPage() {
                 <p className="mt-6 text-sm font-semibold uppercase tracking-[0.04em] text-[var(--color-cool-gray)]">
                   {post.category} - {post.displayDate}
                 </p>
-                <h2 className="mt-3 text-2xl font-extrabold uppercase leading-tight text-[var(--color-primary-navy)]">
+                <h2 className="mt-3 text-2xl font-bold uppercase leading-tight text-[var(--color-primary-navy)]">
                   <Link
                     href={`/blogs/${post.slug}`}
                     className="transition hover:text-[var(--color-metallic-gold)]"
@@ -56,7 +55,7 @@ export default function BlogsPage() {
                 </p>
                 <Link
                   href={`/blogs/${post.slug}`}
-                  className="mt-4 inline-flex items-center gap-2 text-sm font-extrabold uppercase tracking-[0.06em] text-[var(--color-metallic-gold)] transition hover:text-[var(--color-primary-navy)]"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.06em] text-[var(--color-metallic-gold)] transition hover:text-[var(--color-primary-navy)]"
                 >
                   Read More 
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" ><path d="M5 12h14" /><path d="m12 5 7 7-7 7" /></svg>

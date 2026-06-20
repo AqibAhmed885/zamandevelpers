@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { Fragment, useEffect, useState } from "react";
 import {
-  Apple,
   ArrowRight,
   BriefcaseBusiness,
   Camera,
@@ -15,7 +14,6 @@ import {
   Menu,
   MessageCircle,
   Phone,
-  Play,
   X,
 } from "lucide-react";
 import { navigation } from "@/lib/site-content";
@@ -96,7 +94,7 @@ export function Header() {
               <div key={item.href} className="group relative py-4">
                 <Link
                   href={item.href}
-                  className="flex items-center gap-1.5 text-sm font-medium uppercase tracking-[0.14em] transition-colors duration-300 hover:text-[var(--color-metallic-gold)]"
+                  className="flex items-center gap-1.5 text-sm font-semibold uppercase tracking-[0.14em] transition-colors duration-300 hover:text-[var(--color-metallic-gold)]"
                 >
                   {item.label}
                   <ChevronDown aria-hidden="true" className="h-3.5 w-3.5" />
@@ -267,7 +265,7 @@ export function Footer() {
             Dubai, shaped by thoughtful design, elevated living, and enduring
             investment value.
           </p>
-          <div className="mt-6 flex flex-wrap gap-2.5">
+          {/* <div className="mt-6 flex flex-wrap gap-2.5">
             <a
               href="https://play.google.com/"
               target="_blank"
@@ -294,7 +292,7 @@ export function Footer() {
                 <span className="mt-1 block text-sm font-medium">App Store</span>
               </span>
             </a>
-          </div>
+          </div> */}
         </section>
 
         <section aria-labelledby="footer-links-heading">

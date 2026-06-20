@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter, Marcellus } from "next/font/google";
+import { SmoothScrollProvider } from "@/components/smooth-scroll-provider";
 import "./globals.css";
 
 const brandFont = Marcellus({
@@ -38,6 +39,7 @@ export default function RootLayout({
     >
 
       <body className="min-h-full flex flex-col">
+        <SmoothScrollProvider />
         {children}
       </body>
     </html>

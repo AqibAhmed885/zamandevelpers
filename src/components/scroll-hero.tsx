@@ -216,13 +216,13 @@ export function ScrollHero() {
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/projects/isla-bay"
-                className="rounded-full bg-[var(--color-metallic-gold)] px-6 py-3 text-center text-sm font-semibold text-[var(--color-primary-navy)] transition hover:bg-[var(--color-soft-gold)]"
+                className="rounded-full bg-[var(--color-metallic-gold)] px-6 py-3 text-center text-sm font-semibold text-[var(--color-primary-navy)] transition duration-300 ease-out hover:bg-[var(--color-soft-gold)]"
               >
                 Discover Isla Bay
               </Link>
               <Link
                 href="/contact"
-                className="rounded-full border border-[var(--color-white)]/35 px-6 py-3 text-center text-sm font-semibold text-[var(--color-white)] transition hover:border-[var(--color-soft-gold)] hover:text-[var(--color-soft-gold)]"
+                className="rounded-full border border-[var(--color-white)]/35 px-6 py-3 text-center text-sm font-semibold text-[var(--color-white)] transition duration-300 ease-out hover:border-[var(--color-soft-gold)] hover:text-[var(--color-soft-gold)]"
               >
                 Schedule a Private Briefing
               </Link>

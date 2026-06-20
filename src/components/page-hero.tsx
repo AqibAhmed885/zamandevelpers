@@ -24,7 +24,7 @@ export function PageHero({ eyebrow, title, body, backgroundImage }: PageHeroProp
         <p className="font-accent text-sm font-semibold uppercase tracking-[0.28em] text-[var(--color-soft-gold)]">
           {eyebrow}
         </p>
-        <h1 className="font-heading mt-5 max-w-4xl text-4xl font-semibold leading-tight sm:text-5xl">
+        <h1 className="font-heading uppercase mt-5 max-w-4xl text-4xl font-medium leading-tight sm:text-5xl">
           {title}
         </h1>
         <p className="mt-6 max-w-3xl text-lg leading-8 text-[var(--color-white)]/84">{body}</p>

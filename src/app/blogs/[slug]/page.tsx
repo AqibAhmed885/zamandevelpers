@@ -4,6 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Footer, Header } from "@/components/site-shell";
 import { blogPosts } from "@/lib/site-content";
+import { PageHero } from "@/components/page-hero";
 
 type BlogDetailPageProps = {
   params: Promise<{
@@ -85,33 +86,17 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
+        <PageHero
+          eyebrow={post.category}
+          title={post.title}
+          body={post.excerpt}
+          backgroundImage={post.image}
+        />
         <article>
-          <section className="relative flex min-h-[76vh] items-end overflow-hidden px-5 pb-16 pt-36 text-white lg:px-8">
-            <Image
-              src={post.image}
-              alt={post.title}
-              fill
-              priority
-              sizes="100vw"
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-r from-black/78 via-black/42 to-black/10" />
-            <div className="absolute inset-x-0 bottom-0 h-2/5 bg-gradient-to-t from-black/70 to-transparent" />
-            <div className="relative z-10 mx-auto w-full max-w-6xl">
-              <p className="text-sm font-semibold uppercase tracking-[0.22em] text-white/82">
-                {post.category} - {post.displayDate}
-              </p>
-              <h1 className="mt-5 max-w-5xl text-4xl font-semibold uppercase leading-tight tracking-[0.04em] sm:text-5xl lg:text-[64px]">
-                {post.title}
-              </h1>
-              <p className="mt-6 max-w-3xl text-lg leading-8 text-white/82">
-                {post.excerpt}
-              </p>
-            </div>
-          </section>
+          
 
           <section className="px-5 py-16 lg:px-8 lg:py-24">
-            <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.72fr_0.28fr]">
+            <div className="mx-auto grid max-w-7xl gap-12 lg:grid-cols-[0.72fr_0.28fr]">
               <div className="space-y-12">
                 {post.sections.map((section) => (
                   <section key={section.heading}>
@@ -156,7 +141,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
               </h2>
               <Link
                 href="/blogs"
-                className="text-sm font-extrabold uppercase tracking-[0.08em] text-[var(--color-metallic-gold)] transition hover:text-[var(--color-primary-navy)]"
+                className="text-sm font-medium uppercase tracking-[0.08em] text-[var(--color-metallic-gold)] transition hover:text-[var(--color-primary-navy)]"
               >
                 All News
               </Link>
@@ -178,7 +163,7 @@ export default async function BlogDetailPage({ params }: BlogDetailPageProps) {
                   <p className="mt-5 text-sm font-semibold uppercase tracking-[0.04em] text-[var(--color-cool-gray)]">
                     {item.category} - {item.displayDate}
                   </p>
-                  <h3 className="mt-2 text-xl font-extrabold uppercase leading-tight text-[var(--color-primary-navy)]">
+                  <h3 className="mt-2 text-xl font-bold uppercase leading-tight text-[var(--color-primary-navy)]">
                     <Link
                       href={`/blogs/${item.slug}`}
                       className="transition hover:text-[var(--color-metallic-gold)]"

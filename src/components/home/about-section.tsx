@@ -31,9 +31,10 @@ export function AboutSection() {
     const ctx = gsap.context(() => {
       const scrollTriggerConfig = {
         trigger: section,
-        start: "top 80%",
-        end: "center 80%",
-        scrub: 1,
+        start: "top 85%",
+        end: "center 45%",
+        scrub: 1.2,
+        invalidateOnRefresh: true,
       };
 
       gsap.fromTo(
@@ -107,7 +108,7 @@ export function AboutSection() {
             </p>
             <Link
               href="/about"
-              className="inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-metallic-gold)] transition hover:text-[var(--color-primary-navy)]"
+              className="inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-[var(--color-metallic-gold)] transition duration-300 ease-out hover:text-[var(--color-primary-navy)]"
             >
               Read Our Story
             </Link>
