@@ -3,16 +3,16 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
-const FRAME_COUNT = 169;
+const FRAME_COUNT = 60;
 const FRAME_DIGITS = 3;
-const FRAME_PATH = "/animation/frames/frame_";
+const FRAME_PATH = "/PixVerse_V6_Image_Text_360P_A_cinematic_single-2_000/PixVerse_V6_Image_Text_360P_A_cinematic_single-2_";
 
 function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
 
 function frameUrl(index: number) {
-  return `${FRAME_PATH}${String(index + 1).padStart(FRAME_DIGITS, "0")}.jpg`;
+  return `${FRAME_PATH}${String(index).padStart(FRAME_DIGITS, "0")}.jpg`;
 }
 
 export function ScrollHero() {
@@ -191,14 +191,14 @@ export function ScrollHero() {
             {/* <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[var(--color-metallic-gold)]">
               Isla Bay Website
             </p> */}
-            <h1 className="font-heading mt-6 text-5xl font-semibold leading-[0.98] sm:text-6xl lg:text-7xl">
+            <h1 className="font-heading mt-6 text-5xl font-semibold text leading-[0.98] sm:text-6xl lg:text-7xl">
               {["We don't just ",
                 "build the future.",
                 " We define the era."].map(
                 (line, index) => (
                   <span key={line} className="block uppercase ">
                     <span
-                      className="block transition-transform duration-1000 ease-out"
+                        className="block transition-transform text-[var(--color-primary-navy)] duration-1000 ease-out"
                       style={{
                         transitionDelay: `${index * 120}ms`,
                         transform: isReady ? "translateY(0)" : "translateY(110%)",
@@ -210,7 +210,7 @@ export function ScrollHero() {
                 )
               )}
             </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--color-off-white)]">
+            <p className="mt-7 max-w-2xl text-lg leading-8">
               Zaman Developers introduces <strong>Isla Bay</strong>—an architectural masterpiece gracing the shores of <strong>Dubai Islands</strong> . A rare sanctuary where ultra-luxury island living harmonizes with the bold energy of the city.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row">
