@@ -186,12 +186,12 @@ export function ScrollHero() {
           />
         </div>
         {/* <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(0,0,0,0.84),rgba(0,0,0,0.48)_38%,rgba(0,0,0,0.06)_72%),linear-gradient(0deg,rgba(0,0,0,0.58),rgba(0,0,0,0.02)_45%)]" /> */}
-        <div className="relative z-10 mx-auto grid min-h-screen max-w-[1560] content-end px-5 pb-16 pt-32 lg:px-8">
+        <div className="relative z-10 mx-auto grid min-h-screen max-w-[1560] content-end px-5 pb-6 pt-32 lg:px-8">
           <div ref={copyRef} className="max-w-4xl will-change-transform">
             {/* <p className="text-sm font-semibold uppercase tracking-[0.32em] text-[var(--color-metallic-gold)]">
               Isla Bay Website
             </p> */}
-            <h1 className="font-heading mt-6 text-3xl font-semibold text leading-[0.98] sm:text-4xl lg:text-5xl">
+            <h1 className="font-heading mt-3 text-2xl font-semibold leading-10  md:text-[42px]">
               {["We don't just ",
                 "build the future.",
                 " We define the era."].map(
@@ -210,10 +210,10 @@ export function ScrollHero() {
                 )
               )}
             </h1>
-            <p className="mt-4 max-w-2xl text-white text-lg font-medium">
+            <p className="mt-2 max-w-2xl text-white text-[18px] font-medium leading-6">
               Zaman Developers introduces <strong>Isla Bay</strong>—an architectural masterpiece gracing the shores of <strong>Dubai Islands</strong> . A rare sanctuary where ultra-luxury island living harmonizes with the bold energy of the city.
             </p>
-            <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/projects/isla-bay"
                 className="rounded-full bg-[var(--color-metallic-gold)] px-6 py-3 text-center text-sm font-semibold text-[var(--color-primary-navy)] transition duration-300 ease-out hover:bg-[var(--color-soft-gold)]"
